@@ -1,0 +1,5 @@
+bin/www
+node_modules
+public/javascripts/build
+app.js
+webpack.config.dev.js
