@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "NODE_ENV=development nodemon ./bin/www",
-    "build": "./node_modules/.bin/eslint ./ && webpack --progress --watch --colors --config webpack.config.dev.js"
+    "build": "./node_modules/.bin/eslint ./ && webpack --progress --watch --colors --config webpack.config.dev.js",
+    "fix": "./node_modules/.bin/eslint --fix ./"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -24,6 +25,7 @@
     "babel-preset-env": "^1.6.1",
     "chalk": "^2.3.0",
     "eslint": "^4.13.1",
+    "eslint-config-google": "^0.9.1",
     "eslint-plugin-react": "^7.5.1",
     "nodemon": "^1.12.7",
     "webpack": "^3.10.0"
