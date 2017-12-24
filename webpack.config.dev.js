@@ -3,7 +3,7 @@ const jsPath = './public/javascripts/';
 
 module.exports = {
   entry: {
-    'main': jsPath + 'entry/main.js',
+    'main': jsPath + 'routes_entry/main.js',
   },
   output: {
     path: path.join(__dirname, jsPath + "build"),
