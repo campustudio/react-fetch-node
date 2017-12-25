@@ -1,5 +1,5 @@
-const path = require('path');
-const jsPath = './public/javascripts/';
+const path = require('path')
+const jsPath = './public/javascripts/'
 
 module.exports = {
   entry: {

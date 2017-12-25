@@ -28,6 +28,8 @@
 				"ArrowFunctionExpression": false,
 				"FunctionExpression": false
 			}
-		}]
+		}],
+		"no-console": 0,
+		"semi": 0
 	}
 }
