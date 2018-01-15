@@ -1,3 +1,3 @@
 module.exports = {
-  TRAD_URL: 'https://api.dev.chejianer.com',
+  TRAD_URL: 'https://api.dev.*.com',
 }

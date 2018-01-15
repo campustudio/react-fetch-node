@@ -9,7 +9,7 @@ export function netRequestGet(url, err, callback, headerGet) {
   ).then((response)=> {
     // console.log("netRequestGet json", response);
     if (response.status == 500) {
-      alert.error('程序异常,请联系车件儿客服人员!');
+      alert.error('程序异常,请联系客服人员!');
     } else if (response.status == 403) {
       alert.error('登录信息过期,请重新登录!');
       setTimeout(()=> {
@@ -21,7 +21,7 @@ export function netRequestGet(url, err, callback, headerGet) {
         err(json);
       });
     } else if (response.status != 200) {
-      alert.error('程序异常,请联系车件儿客服人员!');
+      alert.error('程序异常,请联系客服人员!');
     } else {
       if (typeof(response) === 'object') {
         return response;
@@ -50,7 +50,7 @@ export function netRequestPost(url, data, err, callback) {
   }
   ).then((response)=> {
     if (response.status == 500) {
-      alert('程序异常,请联系车件儿客服人员!');
+      alert('程序异常,请联系客服人员!');
     } else if (response.status == 403) {
       alert('登录信息过期,请重新登录!');
       setTimeout(()=> {
@@ -61,7 +61,7 @@ export function netRequestPost(url, data, err, callback) {
         alert(json.errorMsg);
       });
     } else if (response.status != 200) {
-      alert('程序异常,请联系车件儿客服人员!');
+      alert('程序异常,请联系客服人员!');
     } else {
       if (typeof(response) === 'object') {
         return response;

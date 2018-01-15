@@ -3,7 +3,7 @@ import React from 'react'
 import {Router, browserHistory} from 'react-router' // eslint-disable-line
 import BasicRoutes from '../routes/BasicRoutes'
 
-export default class App extends React.Component {
+export default class Main extends React.Component {
   componentDidMount() {
   }
 
@@ -14,4 +14,4 @@ export default class App extends React.Component {
   }
 }
 
-render(<App/>, document.getElementById('app'))
+render(<Main/>, document.getElementById('app'))
