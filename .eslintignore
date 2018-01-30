@@ -1,5 +1,8 @@
 bin/www
 node_modules
 public/javascripts/build
+public/main.bundle.js
+public/main.bundle.js.*
 app.js
 webpack.config.dev.js
+
