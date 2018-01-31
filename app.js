@@ -67,21 +67,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-const webpackDevServer = require('webpack-dev-server');
-const webpack = require('webpack');
-const config = require('./webpack.config.dev.js');
-const options = {
-  contentBase: './public/javascripts/build',
-  hot: true,
-  host: 'localhost'
-};
-webpackDevServer.addDevServerEntrypoints(config, options);
-const compiler = webpack(config);
-const server = new webpackDevServer(compiler, options);
-server.listen(5009, 'localhost', () => {
-  console.log('dev server listening on port 5009');
-});
-
 module.exports = app;
 console.info(chalk.keyword('orange').italic('EXPRESS FLOW ROBOT: endof app.js'));
 
