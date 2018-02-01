@@ -5,7 +5,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <div>
-        <PrettyPieChart/>099089999jklooopnnnuiuiklkl
+        <PrettyPieChart/>ok90hfdksafkfdsafdasd999000777666666555
       </div>
     )
   }

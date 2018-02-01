@@ -31,10 +31,13 @@ const compiler = webpack(config);
 // Tell express to use the webpack-dev-middleware and use the webpack.config.dev.js
 // configuration file as a base.
 app1.use(webpackDevMiddleware(compiler, {
-  publicPath: config.output.publicPath
+  publicPath: config.output.publicPath,
+  stats: {colors: true}
 }));
 
-app1.use(require('webpack-hot-middleware')(compiler));
+app1.use(require('webpack-hot-middleware')(compiler, {
+  log: console.log
+}));
 
 // app1.use('/public', express.static('public'));
 

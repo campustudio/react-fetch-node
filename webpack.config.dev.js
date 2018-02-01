@@ -1,3 +1,4 @@
+const ReactHotLoader = require('react-hot-loader/patch');
 const path = require('path')
 const jsPath = 'public/javascripts/'
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -16,12 +17,17 @@ let cleanOptions = {
 module.exports = {
   devtool: '#cheap-module-eval-source-map',
   entry: {
-    'main': ['webpack-hot-middleware/client', path.join(__dirname, jsPath + 'webpack_entry/main.js')],
+    'main': [
+      'react-hot-loader/patch',
+      'webpack/hot/dev-server',
+      'webpack-hot-middleware/client',
+      path.join(__dirname, jsPath + 'webpack_entry/main.js')
+    ],
   },
   output: {
-    path: __dirname,
+    path: '/',
     filename: '[name].bundle.js',
-    publicPath: '/dist/'
+    publicPath: '/'
   },
   module: {
     loaders: [
@@ -56,10 +62,10 @@ module.exports = {
     //   'main.*.bundle.js', 'main.*.css',
     //   'main.*.bundle.js.gz', 'main.*.css.gz',
     // ], cleanOptions),
-    new HtmlWebpackPlugin({
-      filename: 'main.html',
-      template: path.join(__dirname, 'views/index.html')
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'main.html',
+    //   template: path.join(__dirname, 'views/index.html')
+    // }),
     // new ExtractTextPlugin({
     //   filename: "[name].[contenthash:8].css",
     // }),
@@ -71,5 +77,6 @@ module.exports = {
     //   minRatio: 0.8
     // }),
     new webpack.HotModuleReplacementPlugin(),
-  ]
+  ],
+  target: 'web'
 };

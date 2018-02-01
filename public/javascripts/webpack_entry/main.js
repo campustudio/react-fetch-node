@@ -1,19 +1,28 @@
-import {render} from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import {Router, browserHistory} from 'react-router' // eslint-disable-line
 import BasicRoutes from '../routes/BasicRoutes'
 import 'ant-design-pro/dist/ant-design-pro.css'
 import '../../stylesheets/style.css'
+import App from './App'
 
-export default class Main extends React.Component {
-  componentDidMount() {
-  }
-
-  render() {
-    return (
-      <Router routes={BasicRoutes} history={browserHistory} />
-    )
-  }
+const render = Component => {
+  ReactDOM.render(
+      <Component />,
+    document.getElementById('app'),
+  )
 }
 
-render(<Main/>, document.getElementById('app'))
+render(App)
+
+if(module.hot) {
+  module.hot.accept();
+}
+
+// Webpack Hot Module Replacement API
+// if (module.hot) {
+//   module.hot.accept('./App', () => {
+//     render(App)
+//   })
+// }

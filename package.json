@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev-server1": "NODE_ENV=development nodemon ./server.js",
-    "start:dev-server": "NODE_ENV=development nodemon ./dev-server.js",
+    "start:dev-server": "NODE_ENV=development node ./dev-server.js",
     "build": "webpack --progress --watch --colors --config webpack.config.dev.js",
     "eslint-build": "./node_modules/.bin/eslint ./ && webpack --progress --watch --colors --config webpack.config.dev.js",
     "fix": "./node_modules/.bin/eslint --fix ./"
