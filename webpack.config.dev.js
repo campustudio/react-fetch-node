@@ -55,7 +55,10 @@ module.exports = {
     new ExtractTextPlugin({
       filename: "[name].[contenthash:8].css",
     }),
-    new CleanWebpackPlugin(['build/main.*.bundle.js', 'build/main.*.css'], cleanOptions), // 看起来在watch的状态下并没有执行，必须得手动执行打包命令才生效，如何优化？
+    new CleanWebpackPlugin([ // 看起来在watch的状态下并没有执行，必须得手动执行打包命令才生效，如何优化？
+      'build/main.*.bundle.js', 'build/main.*.css',
+      'build/main.*.bundle.js.gz', 'build/main.*.css.gz',
+    ], cleanOptions),
     new CompressionPlugin({
       asset: "[path].gz[query]",
       algorithm: "gzip",
