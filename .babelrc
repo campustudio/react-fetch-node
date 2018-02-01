@@ -1,4 +1,9 @@
 {
   "presets": ["env"],
-  "plugins": ["transform-react-jsx"]
+  "plugins": ["transform-react-jsx"],
+  "env": {
+    "development": {
+      "presets": ["react-hmre"]
+    }
+  }
 }

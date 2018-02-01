@@ -4,10 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
+const webpack = require('webpack');
 
 // the clean options to use
 let cleanOptions = {
-  root:     path.join(__dirname, jsPath),
   exclude:  ['error.html'],
   verbose:  true,
   dry:      false
@@ -16,12 +16,12 @@ let cleanOptions = {
 module.exports = {
   devtool: '#cheap-module-eval-source-map',
   entry: {
-    'main': path.join(__dirname, jsPath + 'webpack_entry/main.js'),
+    'main': ['webpack-hot-middleware/client', path.join(__dirname, jsPath + 'webpack_entry/main.js')],
   },
   output: {
-    path: path.join(__dirname, jsPath + 'build'),
-    filename: '[name].[chunkhash:8].bundle.js',
-    publicPath: '/javascripts/build/'
+    path: __dirname,
+    filename: '[name].bundle.js',
+    publicPath: '/dist/'
   },
   module: {
     loaders: [
@@ -30,12 +30,16 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader'
       },
+      // {
+      //   test: /\.css$/,
+      //   use: ExtractTextPlugin.extract({
+      //     fallback: "style-loader",
+      //     use: "css-loader"
+      //   })
+      // },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
-        })
+        loader: 'style-loader!css-loader'
       },
       {
         test:/\.less$/,
@@ -48,23 +52,24 @@ module.exports = {
     ]
   },
   plugins: [
+    // new CleanWebpackPlugin([ // 看起来在watch的状态下并没有执行，必须得手动执行打包命令才生效，如何优化？
+    //   'main.*.bundle.js', 'main.*.css',
+    //   'main.*.bundle.js.gz', 'main.*.css.gz',
+    // ], cleanOptions),
     new HtmlWebpackPlugin({
       filename: 'main.html',
       template: path.join(__dirname, 'views/index.html')
     }),
-    new ExtractTextPlugin({
-      filename: "[name].[contenthash:8].css",
-    }),
-    new CleanWebpackPlugin([ // 看起来在watch的状态下并没有执行，必须得手动执行打包命令才生效，如何优化？
-      'build/main.*.bundle.js', 'build/main.*.css',
-      'build/main.*.bundle.js.gz', 'build/main.*.css.gz',
-    ], cleanOptions),
-    new CompressionPlugin({
-      asset: "[path].gz[query]",
-      algorithm: "gzip",
-      test: /\.js$|\.css$|\.html$/,
-      threshold: 10240,
-      minRatio: 0.8
-    }),
+    // new ExtractTextPlugin({
+    //   filename: "[name].[contenthash:8].css",
+    // }),
+    // new CompressionPlugin({
+    //   asset: "[path].gz[query]",
+    //   algorithm: "gzip",
+    //   test: /\.js$|\.css$|\.html$/,
+    //   threshold: 10240,
+    //   minRatio: 0.8
+    // }),
+    new webpack.HotModuleReplacementPlugin(),
   ]
 };
