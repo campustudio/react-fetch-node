@@ -41,7 +41,7 @@ app.get('*.css', function(req, res, next) {
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'))); // ?
 
 // last middleware prior error catch
 app.use(function(req, res, next) {

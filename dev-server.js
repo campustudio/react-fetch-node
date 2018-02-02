@@ -18,56 +18,54 @@ var path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
-const app1 = express();
+const app = express();
 const config = require('./webpack.config.dev.js');
 const compiler = webpack(config);
 // var index = require('./routes/index');
 // const historyApiFallback = require('connect-history-api-fallback');
 
-// app1.use(historyApiFallback({
+// app.use(historyApiFallback({
 //   verbose: false
 // }));
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.dev.js
 // configuration file as a base.
-app1.use(webpackDevMiddleware(compiler, {
+app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,
   stats: {colors: true}
 }));
 
-app1.use(require('webpack-hot-middleware')(compiler, {
+app.use(require('webpack-hot-middleware')(compiler, {
   log: console.log
 }));
 
-// app1.use('/public', express.static('public'));
+// app.use('/public', express.static('public'));
 
-app1.get('*', function(req, res) {
+app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'main.html'));
 });
-// app1.get('main.*.bundle.js', function(req, res){
+// app.get('main.*.bundle.js', function(req, res){
 //   res.write(webpackDevMiddleware.fileSystem.readFileSync(req.url));
 //   res.end();
 // });
 
-// app1.get('*', function(req, res){
+// app.get('*', function(req, res){
 //   res.write(webpackDevMiddleware.fileSystem.readFileSync(path.join(__dirname, 'main.html')));
 //   res.end();
 // });
 
 // view engine setup
-// app1.set('views', __dirname);
-// app1.set('view engine', 'html');
-// app1.engine('.html', require('ejs').__express);
-// app1.use('/', index);
-// app1.use(express.static(__dirname));
+// app.set('views', __dirname);
+// app.set('view engine', 'html');
+// app.engine('.html', require('ejs').__express);
+// app.use('/', index);
+// app.use(express.static(__dirname));
 
-
-
-// app1.use(express.static(__dirname, {
+// app.use(express.static(__dirname, {
 //   index: 'main.html'
 // }));
 
 // Serve the files on port 3000.
-app1.listen(3007, function () {
+app.listen(3007, function () {
   console.log('Example app listening on port 3007!\n');
 });
