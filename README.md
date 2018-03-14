@@ -1,2 +1,2 @@
 # weekend
-scaffold
+experimental scaffold
