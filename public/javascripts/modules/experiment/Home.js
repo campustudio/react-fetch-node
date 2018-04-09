@@ -5,48 +5,47 @@ import IconsFlying from './IconsFlying'
 export default class Home extends React.Component {
   constructor(props) {
     super(props)
-    console.log('000constructor this: ', this)
-    console.log('000constructor this.__proto__: ', this.__proto__)
-    console.log('000compare this&this.__proto__: ', this == this.__proto__)
-    // console.log('000constructor this.prototype: ', this.prototype)
-    // console.log('000constructor props: ', props)
-    // console.log('000compare props: ', props === this.props)
-
+    console.log('Home constructor this: ', this)
+    console.log('Home constructor this.__proto__: ', this.__proto__)
+    console.log('Home compare this == this.__proto__: ', this == this.__proto__)
+    // console.log('Home constructor this.prototype: ', this.prototype)
+    // console.log('Home constructor props: ', props)
+    // console.log('Home compare props === this.props: ', props === this.props)
     // this.addPropForHins = 'addPropForHins'
   }
 
-  testPrototype() {
-    console.log('111testPrototype this: ', this)
-    console.log('111testPrototype this.__proto__: ', this.__proto__)
-    // console.log('111testPrototype this.prototype: ', this.prototype)
+  onTestPrototype() {
+    console.log('onTestPrototype this: ', this)
+    console.log('onTestPrototype this.__proto__: ', this.__proto__)
+    // console.log('onTestPrototype this.prototype: ', this.prototype)
   }
 
   render() {
     return (
       <div>
-        <a onClick={this.testPrototype.bind(this)}>test prototype</a>
+        <a onClick={this.onTestPrototype.bind(this)}>test prototype</a>
       </div>
     )
   }
 }
 
-// let hins = new Home()
-// console.log('222hins: ', hins)
-// console.log('222hins.__proto__: ', hins.__proto__)
-// console.log('222hins.prototype: ', hins.prototype)
-// console.log('222hins.addPropForHins: ', hins.addPropForHins)
+// let homeInstance = new Home()
+// console.log('homeInstance: ', homeInstance)
+// console.log('homeInstance.__proto__: ', homeInstance.__proto__)
+// console.log('homeInstance.prototype: ', homeInstance.prototype)
+// console.log('homeInstance.addPropForHins: ', homeInstance.addPropForHins)
 
 // class SubHome extends Home {
 //   constructor(props) {
 //     super(props)
-//     console.log('333constructor this: ', this)
-//     console.log('333constructor this.__proto__: ', this.__proto__)
-//     // console.log('333constructor this.prototype: ', this.prototype)
-//     // console.log('333constructor props: ', props)
-//     // console.log('333compare props: ', props === this.props)
+//     console.log('SubHome constructor this: ', this)
+//     console.log('SubHome constructor this.__proto__: ', this.__proto__)
+//     // console.log('SubHome constructor this.prototype: ', this.prototype)
+//     // console.log('SubHome constructor props: ', props)
+//     // console.log('SubHome compare props === this.props: ', props === this.props)
 //   }
 // }
 
-// let shins = new SubHome()
-// console.log('444shins: ', shins)
-// console.log('444shins.addPropForHins: ', shins.addPropForHins)
+// let subHomeInstance = new SubHome()
+// console.log('subHomeInstance: ', subHomeInstance)
+// console.log('subHomeInstance.addPropForHins: ', subHomeInstance.addPropForHins)
