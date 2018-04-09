@@ -1,0 +1,144 @@
+@-webkit-keyframes rotateLogo {
+  0%   { -webkit-transform: rotateY(0deg); transform: rotateY(0deg) }
+  100% { -webkit-transform: rotateY(360deg); transform: rotateY(360deg) }
+}
+
+@keyframes rotateLogo {
+  0%   { -webkit-transform: rotateY(0deg); transform: rotateY(0deg) }
+  100% { -webkit-transform: rotateY(360deg); transform: rotateY(360deg) }
+}
+
+.header-logo {
+  width: 10rem;
+  height: 10rem;
+  margin: 0 auto;
+  -webkit-animation-name: rotateLogo;
+  animation-name: rotateLogo;
+  -webkit-animation-duration: 10s;
+  animation-duration: 10s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+@keyframes left /* Safari and Chrome */
+{
+  0%   {color:#fdbd39; left:0px; top:-100px;}
+  50%  {color:#00b38a; left:0px; top:100px;}
+  100% {color:#fdbd39; left:0px; top:-100px;}
+}
+
+@-webkit-keyframes left
+{
+  0%   {color:#fdbd39; left:0px; top:-100px;}
+  50%  {color:#00b38a; left:0px; top:100px;}
+  100% {color:#fdbd39; left:0px; top:-100px;}
+}
+
+.play-around-left {
+  position:relative;
+  animation:left 5s linear 2s infinite alternate;
+  /* Firefox: */
+  -moz-animation:left 5s linear 2s infinite alternate;
+  /* Safari and Chrome: */
+  -webkit-animation:left 5s linear 2s infinite alternate;
+  /* Opera: */
+  -o-animation:left 5s linear 2s infinite alternate;
+}
+
+@keyframes bottom /* Safari and Chrome */
+{
+  0%   {color:#fdbd39; left:0px; top:0px;}
+  50%  {color:#00b38a; left:180px; top:0px;}
+  100% {color:#fdbd39; left:0px; top:0px;}
+}
+
+@-webkit-keyframes bottom
+{
+  0%   {color:#fdbd39; left:0px; top:0px;}
+  50%  {color:#00b38a; left:180px; top:0px;}
+  100% {color:#fdbd39; left:0px; top:0px;}
+}
+
+.play-around-bottom {
+  position:absolute;
+  animation:bottom 5s linear 2s infinite alternate;
+  /* Firefox: */
+  -moz-animation:bottom 5s linear 2s infinite alternate;
+  /* Safari and Chrome: */
+  -webkit-animation:bottom 5s linear 2s infinite alternate;
+  /* Opera: */
+  -o-animation:bottom 5s linear 2s infinite alternate;
+}
+
+@keyframes right /* Safari and Chrome */
+{
+  0%   {color:#fdbd39; left:0px; top:0px;}
+  50%  {color:#00b38a; left:0px; top:-180px;}
+  100% {color:#fdbd39; left:0px; top:0px;}
+}
+
+@-webkit-keyframes right
+{
+  0%   {color:#fdbd39; left:0px; top:0px;}
+  50%  {color:#00b38a; left:0px; top:-200px;}
+  100% {color:#fdbd39; left:0px; top:0px;}
+}
+
+.play-around-right {
+  position:absolute;
+  animation:right 5s linear 2s infinite alternate;
+  /* Firefox: */
+  -moz-animation:right 5s linear 2s infinite alternate;
+  /* Safari and Chrome: */
+  -webkit-animation:right 5s linear 2s infinite alternate;
+  /* Opera: */
+  -o-animation:right 5s linear 2s infinite alternate;
+}
+
+@keyframes top /* Safari and Chrome */
+{
+  0%   {color:#fdbd39; left:0px; top:0px;}
+  50%  {color:#00b38a; left:-180px; top:0px;}
+  100% {color:#fdbd39; left:0px; top:0px;}
+}
+
+@-webkit-keyframes top
+{
+  0%   {color:#fdbd39; left:0px; top:0px;}
+  50%  {color:#00b38a; left:-200px; top:0px;}
+  100% {color:#fdbd39; left:0px; top:0px;}
+}
+
+.play-around-top {
+  position:absolute;
+  animation:top 5s linear 2s infinite alternate;
+  /* Firefox: */
+  -moz-animation:top 5s linear 2s infinite alternate;
+  /* Safari and Chrome: */
+  -webkit-animation:top 5s linear 2s infinite alternate;
+  /* Opera: */
+  -o-animation:top 5s linear 2s infinite alternate;
+}
+
+@-webkit-keyframes centerIcon {
+  0%   { -webkit-transform: rotateZ(0deg); transform: rotateZ(0deg) }
+  100% { -webkit-transform: rotateZ(360deg); transform: rotateZ(360deg) }
+}
+
+@keyframes centerIcon {
+  0%   { -webkit-transform: rotateZ(0deg); transform: rotateZ(0deg) }
+  100% { -webkit-transform: rotateZ(360deg); transform: rotateZ(360deg) }
+}
+
+.center-icon {
+  -webkit-animation-name: centerIcon;
+  animation-name: centerIcon;
+  -webkit-animation-duration: 10s;
+  animation-duration: 10s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}

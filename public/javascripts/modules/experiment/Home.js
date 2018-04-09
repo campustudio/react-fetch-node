@@ -24,6 +24,7 @@ export default class Home extends React.Component {
     return (
       <div>
         <a onClick={this.onTestPrototype.bind(this)}>test prototype</a>
+        <IconsFlying/>
       </div>
     )
   }
