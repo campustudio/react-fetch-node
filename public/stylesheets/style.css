@@ -1,8 +1,55 @@
 body {
-  padding: 20px;
+  /* padding: 20px; */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+/* seems like either can work(with/without webkit), but without on high priority */
+@-webkit-keyframes left
+{
+  0%   {color:#fdbd39; left:0px; top:-100px;}
+  50%  {color:#00b38a; left:0px; top:100px;}
+  100% {color:#fdbd39; left:0px; top:-100px;}
+}
+
+@keyframes left /* Safari and Chrome */
+{
+  0%   {color:#fdbd39; left:0px; top:0px;}
+  25%   {color:#00b38a; left:0px; top:40px;}
+  50%  {color:#fdbd39; left:40px; top:40px;}
+  75%  {color:#00b38a; left:40px; top:0px;}
+  100% {color:#fdbd39; left:0px; top:0px;}
+}
+
+.play-around-left {
+  position:relative;
+  animation:left 2s linear 2s infinite;
+  -webkit-animation:left 2s linear 2s infinite; /* Safari and Chrome: */
+  /* -webkit-animation:left 2s linear 2s infinite alternate; */
+  -moz-animation:left 2s linear 2s infinite; /* Firefox: */
+  -o-animation:left 2s linear 2s infinite; /* Opera: */
+}
+
+@-webkit-keyframes centerIcon {
+  0%   { -webkit-transform: rotateZ(0deg); transform: rotateZ(0deg) }
+  100% { -webkit-transform: rotateZ(360deg); transform: rotateZ(360deg) }
+}
+
+@keyframes centerIcon {
+  0%   { -webkit-transform: rotateZ(0deg); transform: rotateZ(0deg) }
+  100% { -webkit-transform: rotateZ(360deg); transform: rotateZ(360deg) }
+}
+
+.center-icon {
+  -webkit-animation-name: centerIcon;
+  animation-name: centerIcon;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
 }

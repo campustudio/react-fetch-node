@@ -4,3 +4,4 @@ public/javascripts/build
 public/main.bundle.js
 public/main.bundle.js.*
 package-lock.json
+.vscode/
