@@ -1,6 +1,7 @@
 var chalk = require('chalk');
 console.info(chalk.keyword('orange').italic('EXPRESS FLOW ROBOT: into app.js'));
 var express = require('express');
+var compression = require('compression');
 var path = require('path');
 // var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -10,9 +11,10 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var excel = require('./routes/excel');
 var app = express();
+app.use(compression());
 
 // view engine setup
-app.set('views', path.join(__dirname, 'public/javascripts/build'));
+app.set('views', path.join(__dirname, 'public'));
 app.set('view engine', 'html');
 app.engine('.html', require('ejs').__express);
 app.use(logger('dev'));
@@ -23,21 +25,21 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/excel', excel);
 
-app.get('*.js', function(req, res, next) {
-  req.url = req.url + '.gz';
-  res.contentType(req.path.substr(req.path.lastIndexOf('.')));
-  res.set('Content-Encoding', 'gzip');
-  res.set('Content-Type', 'text/javascript');
-  next();
-});
+// app.get('*.js', function(req, res, next) {
+//   req.url = req.url + '.gz';
+//   res.contentType(req.path.substr(req.path.lastIndexOf('.')));
+//   res.set('Content-Encoding', 'gzip');
+//   res.set('Content-Type', 'text/javascript');
+//   next();
+// });
 
-app.get('*.css', function(req, res, next) {
-  req.url = req.url + '.gz';
-  res.contentType(req.path.substr(req.path.lastIndexOf('.')));
-  res.set('Content-Encoding', 'gzip');
-  res.set('Content-Type', 'text/css');
-  next();
-});
+// app.get('*.css', function(req, res, next) {
+//   req.url = req.url + '.gz';
+//   res.contentType(req.path.substr(req.path.lastIndexOf('.')));
+//   res.set('Content-Encoding', 'gzip');
+//   res.set('Content-Type', 'text/css');
+//   next();
+// });
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

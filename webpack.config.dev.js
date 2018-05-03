@@ -16,16 +16,19 @@ let cleanOptions = {
 
 module.exports = {
   devtool: '#cheap-module-eval-source-map',
+  // entry: {
+  //   'main': [
+  //     'react-hot-loader/patch',
+  //     'webpack/hot/dev-server',
+  //     'webpack-hot-middleware/client',
+  //     path.join(__dirname, jsPath + 'webpack_entry/main.js')
+  //   ],
+  // },
   entry: {
-    'main': [
-      'react-hot-loader/patch',
-      'webpack/hot/dev-server',
-      'webpack-hot-middleware/client',
-      path.join(__dirname, jsPath + 'webpack_entry/main.js')
-    ],
+    'main': path.join(__dirname, jsPath + 'webpack_entry/main.js')
   },
   output: {
-    path: '/',
+    path: path.join(__dirname, 'public'),
     filename: '[name].bundle.js',
     publicPath: '/'
   },
@@ -58,10 +61,10 @@ module.exports = {
     //   'main.*.bundle.js', 'main.*.css',
     //   'main.*.bundle.js.gz', 'main.*.css.gz',
     // ], cleanOptions),
-    // new HtmlWebpackPlugin({
-    //   filename: 'main.html',
-    //   template: path.join(__dirname, 'views/index.html')
-    // }),
+    new HtmlWebpackPlugin({
+      filename: 'main.html',
+      template: path.join(__dirname, 'views/index.html')
+    }),
     // new ExtractTextPlugin({
     //   filename: "[name].[contenthash:8].css",
     // }),
@@ -72,7 +75,7 @@ module.exports = {
     //   threshold: 10240,
     //   minRatio: 0.8
     // }),
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
   ],
-  target: 'web'
+  // target: 'web'
 };
