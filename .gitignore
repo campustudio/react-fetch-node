@@ -3,5 +3,6 @@ npm-debug.*
 public/javascripts/build
 public/main.bundle.js
 public/main.bundle.js.*
+public/main.html
 package-lock.json
 .vscode/
