@@ -184,4 +184,4 @@ module.exports = {
 }
 
 //
-"teminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
+"terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
