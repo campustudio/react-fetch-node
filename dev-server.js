@@ -1,18 +1,3 @@
-// const webpackDevServer = require('webpack-dev-server');
-// const webpack = require('webpack');
-// const config = require('./webpack.config.dev.js');
-// const options = {
-//   contentBase: './views',
-//   hot: true,
-//   host: 'localhost'
-// };
-// webpackDevServer.addDevServerEntrypoints(config, options);
-// const compiler = webpack(config);
-// const server = new webpackDevServer(compiler, options);
-// server.listen(5009, 'localhost', () => {
-//   console.log('dev server listening on port 5009');
-// });
-
 const express = require('express');
 var path = require('path');
 const webpack = require('webpack');
@@ -23,7 +8,6 @@ const config = require('./webpack.config.dev.js');
 const compiler = webpack(config);
 // var index = require('./routes/index');
 // const historyApiFallback = require('connect-history-api-fallback');
-
 // app.use(historyApiFallback({
 //   verbose: false
 // }));
