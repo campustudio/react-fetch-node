@@ -182,3 +182,6 @@ module.exports = {
     // new BundleAnalyzerPlugin()
   ]
 }
+
+//
+"teminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
