@@ -1,30 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import SubLifeCycle from './SubLifeCycle'
 
 // 基本类型组件
 export default class LifeCycle extends React.Component {
   constructor(props) {
-    console.log('into constructor')
-    console.log('props: ', props);
+    console.log('LifeCycle constructor props: ', props);
     super(props)
-    console.log('into constructor this: ', this)
-    console.log('into constructor this.defaultProps: ', this.defaultProps)
-    console.log('into constructor this.props: ', this.props)
-    console.log('into constructor this.state: ', this.state)
+    console.log('LifeCycle constructor this: ', this)
+    console.log('LifeCycle constructor this.defaultProps: ', this.defaultProps)
+    console.log('LifeCycle constructor this.props: ', this.props)
+    console.log('LifeCycle constructor this.state: ', this.state)
     this.state = {
       name: this.props.name
     }
     this.anything = {a: 'a'}
-    console.log('into constructor this.state: ', this.state)
-    console.log('into constructor this.anything: ', this.anything)
+    console.log('LifeCycle constructor this.state: ', this.state)
+    console.log('LifeCycle constructor this.anything: ', this.anything)
   }
 
   componentWillMount() {
-    console.log('into componentWillMount')
+    console.log('LifeCycle componentWillMount')
   }
 
   render() {
-    console.log('into render');
+    console.log('LifeCycle render');
     return (
       <article>
         <h1>Life Cycle</h1>
@@ -32,18 +32,16 @@ export default class LifeCycle extends React.Component {
         <p>props update</p>
         <p>unmount</p>
         <MyFunctionalComponent/>
+        <SubLifeCycle subName={this.state.name}/>
       </article>   
     )    
   }
 
   componentDidMount() {
-    console.log('into componentDidMount')
-  }
-
-  //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
-  componentWillReceiveProps(nextProps) {
-    console.log('nextProps: ', nextProps);
-    
+    console.log('LifeCycle componentDidMount')
+    this.setState({
+      name: 'new name1'
+    })
   }
 }
 
