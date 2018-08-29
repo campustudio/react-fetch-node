@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 const app = express();
-const config = require('./webpack.config.dev.js');
+const config = require('./webpack.config.dev.hot.js');
 const compiler = webpack(config);
 // var index = require('./routes/index');
 // const historyApiFallback = require('connect-history-api-fallback');
@@ -12,7 +12,7 @@ const compiler = webpack(config);
 //   verbose: false
 // }));
 
-// Tell express to use the webpack-dev-middleware and use the webpack.config.dev.js
+// Tell express to use the webpack-dev-middleware and use the webpack.config.dev.hot.js
 // configuration file as a base.
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,

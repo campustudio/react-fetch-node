@@ -14,3 +14,14 @@ const render = Component => {
 }
 
 render(App)
+
+if(module.hot) {
+  module.hot.accept();
+}
+
+// Webpack Hot Module Replacement API
+// if (module.hot) {
+//   module.hot.accept('./App', () => {
+//     render(App)
+//   })
+// }
