@@ -5,29 +5,29 @@ export function netRequestGet(url, err, callback, headerGet) {
   fetch(url, {
     method: 'GET',
     headers: headers,
-  }
-  ).then((response)=> {
+  }).then((response)=> {
     // console.log("netRequestGet json", response);
     if (response.status == 500) {
-      alert.error('程序异常,请联系客服人员!');
+      alert('程序异常,请联系客服人员!');
     } else if (response.status == 403) {
-      alert.error('登录信息过期,请重新登录!');
+      alert('登录信息过期,请重新登录!');
       setTimeout(()=> {
         window.location.href = '/';
       }, 1500);
     } else if (response.status == 400 || response.status == 401) {
       response.json().then((json)=> {
-        alert.error(json.errorMsg);
+        alert(json.errorMsg);
         err(json);
       });
     } else if (response.status != 200) {
-      alert.error('程序异常,请联系客服人员!');
+      alert('程序异常,请联系客服人员!');
     } else {
       if (typeof(response) === 'object') {
         return response;
       } else {
         return response.json();
       }
+      // return response;
     }
   }).then((json)=> {
     try {
