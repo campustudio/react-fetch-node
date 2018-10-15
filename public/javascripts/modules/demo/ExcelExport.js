@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class ExcelExport extends React.Component { 
+export default class ExcelExport extends React.Component {
   home() {
     console.log('excel-export')
 

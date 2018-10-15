@@ -1,11 +1,10 @@
 import React from 'react'
-import PrettyPieChart from './PrettyPieChart'
-import IconsFlying from './IconsFlying'
+import IconsFlying from './visual/IconsFlying'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import actions from '../../actions'
 // import { bindActionCreators } from '../../../../../../Library/Caches/typescript/2.9/node_modules/redux';
-import { netRequestGet } from '../../common/PublicMethod'
+import { netRequestGet } from '../../common/asyncFun'
 
 class Home extends React.Component {
   constructor(props) {
