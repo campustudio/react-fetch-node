@@ -1,14 +1,11 @@
 import React from 'react' // eslint-disable-line
 import ReactDOM from 'react-dom' // eslint-disable-line
 import {Router, Route, IndexRoute, browserHistory} from 'react-router' // eslint-disable-line
-import Home from '../modules/demo/Home'
-import TestString from '../modules/demo/TestString'
+import Sidebar from '../modules/demo/Sidebar'
 
 module.exports = (
   <Router history={browserHistory}>
-    <IndexRoute component={Home}/>
-    {/* <Route path="/" component={Home}/> */}
-    <Route path="/" component={TestString}/>
-    {/* <Route path="/" component={ObjectCreator}/> */}
+    <IndexRoute component={Sidebar}/>
+    <Route path="/" component={Sidebar}/>
   </Router>
 )
