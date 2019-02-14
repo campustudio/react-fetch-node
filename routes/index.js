@@ -24,7 +24,7 @@ const renderGet = (url, view) => {
 }
 
 /* GET home page. */
-// renderGet('/', 'main')
+// renderGet('/', 'main') // this works
 
 // router.get('/baidu', function(req, res, next) {
   // console.log('req.headers: ', req.headers);
@@ -50,7 +50,7 @@ const renderGet = (url, view) => {
   // req1.end();
 // });
 
-// TODO: Unexpected token <
+// TODO ISSUE: Unexpected token <
 router.get('/*', function(req, res, next) {
   // console.log('res: ', res.statusCode);
   // res.type('html') // add this, but issue still there
