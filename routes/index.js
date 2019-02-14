@@ -1,9 +1,10 @@
-let chalk = require('chalk');
-let express = require('express');
-let router = express.Router(); // eslint-disable-line
-let development = require('../config/development');
-var request = require('request');
-var http = require('http');
+const chalk = require('chalk');
+const express = require('express');
+const router = express.Router(); // eslint-disable-line
+const development = require('../config/development');
+const request = require('request');
+const http = require('http');
+const path = require('path')
 
 console.info(
   chalk.keyword('magenta').italic(
@@ -11,24 +12,32 @@ console.info(
   )
 );
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  console.log('res: ', res.statusCode);
-  res.render('main', {title: 'Express'});
-});
+const renderData = {
+  title: 'Express'
+}
 
-router.get('/baidu', function(req, res, next) {
-  console.log('req.headers: ', req.headers);
-  request('http://sina.com', function(error, response, data) {
-    console.log('error: ', error);
-    console.log('response: ', response.statusCode);
-    console.log('typeof(data): ', typeof(data));
-    console.log('data: ', data.length);
-    res.send({body: 'body'}) // ??
+const renderGet = (url, view) => {
+  router.get(url, function(req, res, next) {
+    console.log('res.statusCode: ', res.statusCode)
+    res.render(view, renderData)
   })
+}
+
+/* GET home page. */
+// renderGet('/', 'main')
+
+// router.get('/baidu', function(req, res, next) {
+  // console.log('req.headers: ', req.headers);
+  // request('http://sina.com', function(error, response, data) {
+  //   console.log('error: ', error);
+  //   console.log('response: ', response.statusCode);
+  //   console.log('typeof(data): ', typeof(data));
+  //   console.log('data: ', data.length);
+  //   res.send({body: 'body'}) // ??
+  // })
 
   // ??
-  // var req1 = http.request(new URL('http://sina.com'), function(res) {
+  // const req1 = http.request(new URL('http://sina.com'), function(res) {
   //     // res.setEncoding("utf-8");
   //     // res.on("data", function(chunk) {
   //     //     console.log(chunk.toString())
@@ -39,6 +48,15 @@ router.get('/baidu', function(req, res, next) {
   //     console.log(err.message);
   // });
   // req1.end();
+// });
+
+// TODO: Unexpected token <
+router.get('/*', function(req, res, next) {
+  // console.log('res: ', res.statusCode);
+  // res.type('html') // add this, but issue still there
+  res.render('main', {title: 'Express'});
+  // res.sendFile(path.join(__dirname+'/main.html'));
+  // res.sendFile('main.html');
 });
 
 module.exports = router;

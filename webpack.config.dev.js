@@ -8,7 +8,7 @@ const CompressionPlugin = require('compression-webpack-plugin')
 const webpack = require('webpack');
 
 // the clean options to use
-let cleanOptions = {
+const cleanOptions = {
   exclude:  ['error.html'],
   verbose:  true,
   dry:      false

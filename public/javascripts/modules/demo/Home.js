@@ -1,10 +1,10 @@
 import React from 'react'
-import IconsFlying from './visual/IconsFlying'
-import {bindActionCreators} from 'redux';
-import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux'
+import { connect } from 'react-redux'
 import actions from '../../actions'
-// import { bindActionCreators } from '../../../../../../Library/Caches/typescript/2.9/node_modules/redux';
 import { netRequestGet } from '../../common/asyncFun'
+import Sidebar from './Sidebar'
+import IconsFlying from './visual/IconsFlying'
 
 class Home extends React.Component {
   constructor(props) {
@@ -41,9 +41,12 @@ class Home extends React.Component {
 
     return (
       <div>
-        <a onClick={this.onTestPrototype.bind(this)}>test prototype</a>
-        <IconsFlying/>
-        {this.props.userProfile.name}
+        {/* <a onClick={this.onTestPrototype.bind(this)}>test prototype</a> */}
+        {/* {this.props.userProfile.name} */}
+        <Sidebar/>
+        <div style={{border:'1px solid red',paddingLeft:220}}>
+          {this.props.children ? this.props.children : <IconsFlying/>}
+        </div>
       </div>
     )
   }
