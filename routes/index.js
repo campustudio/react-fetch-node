@@ -13,7 +13,7 @@ console.info(
 );
 
 const renderData = {
-  title: 'Express'
+  title: 'Express',
 }
 
 const renderGet = (url, view) => {
@@ -51,7 +51,8 @@ const renderGet = (url, view) => {
 // });
 
 // TODO ISSUE: Unexpected token <
-router.get('/*', function(req, res, next) {
+// router.get('/*', function(req, res, next) {
+router.get('/', function(req, res, next) {
   // console.log('res: ', res.statusCode);
   // res.type('html') // add this, but issue still there
   res.render('main', {title: 'Express'});

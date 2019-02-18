@@ -1,4 +1,4 @@
-const _randomNumArr = () => {
+const randomNumArrF = () => {
   let randomArr = []
   for (let i=0; i<10; i++) {
     randomArr.push(Math.random())
@@ -7,5 +7,5 @@ const _randomNumArr = () => {
 }
 
 module.exports = {
-  _randomNumArr,
+  randomNumArrF,
 }
