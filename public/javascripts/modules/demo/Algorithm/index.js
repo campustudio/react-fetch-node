@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import store from './store'
 import sort from './sort'
 import './styles.css'
-import randomContainer from './randomContainer'
+import randomContainerF from './randomContainerF'
 
 const randomNumArr = store.randomNumArrF() || []
 
@@ -32,11 +32,11 @@ class Algorithm extends Component {
 
     return (
       <div className='font'>
-        {randomContainer(randomNumArr)}
+        {randomContainerF(randomNumArr)}
         <button className='button' onClick={this.bsF}>Bubble Sort</button>
-        {randomContainer(randomNumArrB)}
+        {randomContainerF(randomNumArrB)}
         <button className='button' onClick={this.ssF}>Select Sort</button>
-        {randomContainer(randomNumArrS)}
+        {randomContainerF(randomNumArrS)}
       </div>
     )
   }
