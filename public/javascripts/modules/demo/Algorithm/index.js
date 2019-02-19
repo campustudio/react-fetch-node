@@ -11,9 +11,10 @@ class Algorithm extends Component {
     super(props)
     this.state = {
       randomNumArrB: [],
-      randomNumArrS: [],
+      randomNumArrQ: [],
     },
     this.bsF = this.bsF.bind(this)
+    this.qsF = this.qsF.bind(this)
   }
 
   // bsF = () => { // babel support arrow function??
@@ -23,20 +24,22 @@ class Algorithm extends Component {
     })
   }
 
-  ssF() {
-
+  qsF() {
+    this.setState({
+      randomNumArrQ: sort.quickSortF(randomNumArr),
+    })
   }
 
   render() {
-    const {randomNumArrB, randomNumArrS} = this.state
+    const {randomNumArrB, randomNumArrQ} = this.state
 
     return (
       <div className='font'>
         {randomContainerF(randomNumArr)}
         <button className='button' onClick={this.bsF}>Bubble Sort</button>
         {randomContainerF(randomNumArrB)}
-        <button className='button' onClick={this.ssF}>Select Sort</button>
-        {randomContainerF(randomNumArrS)}
+        <button className='button' onClick={this.qsF}>Quick Sort</button>
+        {randomContainerF(randomNumArrQ)}
       </div>
     )
   }

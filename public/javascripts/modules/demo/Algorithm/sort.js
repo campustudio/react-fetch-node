@@ -28,7 +28,7 @@ const quickSortF = (arr) => {
   for (let i=0; i<arr.length; i++) {
     if (arr[i] < base) {
       left.push(arr[i])
-    } else {
+    } else if (arr[i] > base) {
       right.push(arr[i])
     }
   }
