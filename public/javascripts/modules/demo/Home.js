@@ -20,9 +20,9 @@ class Home extends React.Component {
   componentDidMount() {
     this.props.setUserProfile({name: 'Yui'})
     setTimeout(() => {
-      this.props.onApiRequest()
+      this.props.onApiRequest() // blocked by CORS policy
     }, 1500)
-    netRequestGet('/baidu', ()=>{}, (res)=>{
+    netRequestGet('/sina', ()=>{}, (res)=>{
       console.log('res: ', res); // ??
       console.log('res.json(): ', res.json()); // ?
       console.log('res.body: ', res.body);

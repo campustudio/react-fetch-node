@@ -40,7 +40,7 @@ class Algorithm extends Component {
     const value = e.target.value
     const _this = this
 
-    // still an issue for the the first input, will handle later
+    // TODO: still an issue for the the first input, will handle later
     debounceTimeout = setTimeout(() => {
       if (now - initialT < 3000) {
         clearTimeout(debounceTimeout)
@@ -82,6 +82,10 @@ class Algorithm extends Component {
             }
           </ul>
         </Fragment>
+        <Fragment>
+          
+        </Fragment>
+        <hr/>
       </div>
     )
   }

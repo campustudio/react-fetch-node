@@ -26,9 +26,9 @@ const renderGet = (url, view) => {
 /* GET home page. */
 // renderGet('/', 'main') // this works
 
-// router.get('/baidu', function(req, res, next) {
-  // console.log('req.headers: ', req.headers);
-  // request('http://sina.com', function(error, response, data) {
+router.get('/sina', function(req, res, next) {
+  console.log('req.headers: ', req.headers);
+  // request('http://sina.com', function(error, response, data) { // works fine
   //   console.log('error: ', error);
   //   console.log('response: ', response.statusCode);
   //   console.log('typeof(data): ', typeof(data));
@@ -36,19 +36,19 @@ const renderGet = (url, view) => {
   //   res.send({body: 'body'}) // ??
   // })
 
-  // ??
-  // const req1 = http.request(new URL('http://sina.com'), function(res) {
-  //     // res.setEncoding("utf-8");
-  //     // res.on("data", function(chunk) {
-  //     //     console.log(chunk.toString())
-  //     // });
-  //     console.log(res.statusCode);
-  // });
+  // TODO: ?? 500 (Internal Server Error)
+  const req1 = http.request(new URL('http://sina.com'), function(res) {
+      // res.setEncoding("utf-8");
+      // res.on("data", function(chunk) {
+      //     console.log(chunk.toString())
+      // });
+      console.log(res.statusCode);
+  });
   // req1.on("error",function(err){
   //     console.log(err.message);
   // });
   // req1.end();
-// });
+});
 
 // TODO ISSUE: Unexpected token <
 // router.get('/*', function(req, res, next) {
