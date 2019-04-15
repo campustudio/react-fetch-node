@@ -1,5 +1,4 @@
-# weekend
-experimental scaffold
+# react-fetch-express
 
 # After cloned
 ##### 1. start the node server
