@@ -4,7 +4,7 @@ import sort from './sort'
 import eventHandle from './eventHandle'
 import './styles.css'
 import randomContainerF from './randomContainerF'
-
+import AsyncCascader from '@campustudio/vehicle-ui/src/components/AsyncCascader'
 const randomNumArr = store.randomNumArrF() || []
 let debounceTimeout
 let initialT = new Date().getTime()
