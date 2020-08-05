@@ -12,6 +12,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var excel = require('./routes/excel');
+var stl = require('./routes/stl');
 var app = express();
 app.use(compression());
 // app.use(cors())
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use('/', index);
 app.use('/users', users);
 app.use('/excel', excel);
+app.use('/stl', stl);
 
 // app.get('*.js', function(req, res, next) {
 //   req.url = req.url + '.gz';
