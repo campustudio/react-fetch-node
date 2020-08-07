@@ -41,13 +41,18 @@
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "request": "^2.88.0",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "three": "^0.119.1",
+    "three-full": "^28.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.11.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "chalk": "^2.3.0",
     "clean-webpack-plugin": "^0.1.18",
     "compression-webpack-plugin": "^1.1.6",

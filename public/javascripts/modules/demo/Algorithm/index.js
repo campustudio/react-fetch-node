@@ -3,8 +3,9 @@ import store from './store'
 import sort from './sort'
 import eventHandle from './eventHandle'
 import './styles.css'
-import randomContainerF from './randomContainerF'
-import AsyncCascader from '@campustudio/vehicle-ui/src/components/AsyncCascader'
+import StlViewer from './StlViewer'
+// import AsyncCascader from '@campustudio/vehicle-ui/src/components/AsyncCascader'
+
 const randomNumArr = store.randomNumArrF() || []
 let debounceTimeout
 let initialT = new Date().getTime()
@@ -16,10 +17,32 @@ class Algorithm extends Component {
       randomNumArrB: [],
       randomNumArrQ: [],
       inputBuffer: [],
+      stls: [],
     },
     this.bsF = this.bsF.bind(this)
     this.qsF = this.qsF.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
+  }
+
+  componentDidMount() {
+    fetch('/stl/stls', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(
+      (res) => res.json()
+    ).then((data) => {
+      console.log(data)
+      if (data && data.code === 0) {
+        let stls = data.resFiles;
+        if (stls && Array.isArray(stls) && stls.length > 0) {
+          this.setState({
+            stls: stls.slice(0, 12),
+          })
+        }
+      }
+    }).catch((err) => console.log(err))
   }
 
   // bsF = () => { // babel support arrow function??
@@ -58,11 +81,11 @@ class Algorithm extends Component {
   }
 
   render() {
-    const {randomNumArrB, randomNumArrQ, inputBuffer} = this.state
+    const {randomNumArrB, randomNumArrQ, inputBuffer, stls} = this.state
 
     return (
       <div className='font'>
-        {randomContainerF(randomNumArr)}
+        {/* {randomContainerF(randomNumArr)}
         <button className='button' onClick={this.bsF}>Bubble Sort</button>
         {randomContainerF(randomNumArrB)}
         <button className='button' onClick={this.qsF}>Quick Sort</button>
@@ -84,8 +107,24 @@ class Algorithm extends Component {
         </Fragment>
         <Fragment>
           
-        </Fragment>
+        </Fragment> */}
+        <header style={{width: 1280, height: 30, margin: '0 auto', textAlign: 'center'}}>
+          <span style={{lineHeight: '30px'}}>3D PARTS DEMO</span>
+        </header>
         <hr/>
+        <div style={{width: 1280, margin: '0 auto'}}>
+          {
+            stls.map((s, i) => {
+              return (
+                <StlViewer
+                  key={i}
+                  selfDomId={`part${i}`}
+                  filePath={s}
+                />
+              )
+            })
+          }
+        </div>
       </div>
     )
   }

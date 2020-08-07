@@ -7,7 +7,7 @@ import Sidebar from '../modules/demo/Sidebar'
 import GoogleSpeechRecognition from '../modules/demo/GoogleSpeechRecognition'
 import AntDefault from '../modules/demo/upload/AntDefault'
 
-module.exports = (
+export default (
   <Router history={browserHistory}>
     <IndexRoute component={Home}/>
     <Route path="/" component={Algorithm}>

@@ -33,7 +33,7 @@ router.get('/stls', function(req, res, next) {
 
   const listAllFilesAndDirs = dir => globby(`${dir}/**/*`);
   (async () => {
-    const result = await listAllFilesAndDirs(process.cwd() + '/public/stls');
+    const result = await listAllFilesAndDirs(process.cwd() + '/public/GLC');
     const splitResult = [];
     console.log('result ', result);
     result.forEach((e) => {
