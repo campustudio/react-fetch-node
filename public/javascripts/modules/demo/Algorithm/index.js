@@ -4,6 +4,7 @@ import sort from './sort'
 import eventHandle from './eventHandle'
 import './styles.css'
 import StlViewer from './StlViewer'
+import StlGroupViewer from './StlGroupViewer'
 // import AsyncCascader from '@campustudio/vehicle-ui/src/components/AsyncCascader'
 
 const randomNumArr = store.randomNumArrF() || []
@@ -25,20 +26,40 @@ class Algorithm extends Component {
   }
 
   componentDidMount() {
+    this.getStls(1);
+
+    window.addEventListener('scroll', (e) => {
+      let st = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+      if (!st) {
+        console.log('top');
+      } else if ((st+document.documentElement.clientHeight)>=document.documentElement.scrollHeight ) {
+        console.log('bottom');
+        // this.getStls(2);
+      }
+    })
+  }
+
+  getStls = (page) => {
+    const { stls = [] } = this.state;
     fetch('/stl/stls', {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
+      body: JSON.stringify({
+        page,
+        limit: 12,
+      }),
     }).then(
       (res) => res.json()
     ).then((data) => {
       console.log(data)
       if (data && data.code === 0) {
-        let stls = data.resFiles;
-        if (stls && Array.isArray(stls) && stls.length > 0) {
+        let resStls = data.resFiles;
+        console.log('resStls: ', resStls);
+        if (resStls && Array.isArray(resStls) && resStls.length > 0) {
           this.setState({
-            stls: stls.slice(0, 12),
+            stls: stls.concat(resStls),
           })
         }
       }
@@ -113,7 +134,7 @@ class Algorithm extends Component {
         </header>
         <hr/>
         <div style={{width: 1280, margin: '0 auto'}}>
-          {
+          {/* {
             stls.map((s, i) => {
               return (
                 <StlViewer
@@ -123,6 +144,16 @@ class Algorithm extends Component {
                 />
               )
             })
+          } */}
+          {
+            stls.length > 0
+              && (
+                <StlGroupViewer
+                  selfDomId="part1"
+                  files={stls}
+                  renderSize={1000}
+                />
+              )
           }
         </div>
       </div>

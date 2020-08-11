@@ -16,8 +16,14 @@ router.post('/todo', function(req, res, next) {
   res.render('main', {title: 'Get Stl todo'});
 });
 
-router.get('/stls', function(req, res, next) {
+router.post('/stls', function(req, res, next) {
+  console.log('req.body: ', req.body);
   let resFiles = [];
+  const { body = {} } = req;
+  const {
+    limit = 12,
+    page = 1,
+  } = body;
   // fs.readdir(testFolder, (err, files) => {
   //   files.forEach((file) => {
   //     console.log('file: ', file);
@@ -35,15 +41,16 @@ router.get('/stls', function(req, res, next) {
   (async () => {
     const result = await listAllFilesAndDirs(process.cwd() + '/public/GLC');
     const splitResult = [];
-    console.log('result ', result);
+    // console.log('result ', result);
     result.forEach((e) => {
       splitResult.push('./' + e.split('public/')[1])
     })
-    console.log('splitResult ', splitResult);
+    console.log('splitResult ', splitResult);// 1 0 2 10 3 20
     res.send({
       code: 0,
       title: 'Get Stls',
-      resFiles: splitResult,
+      resFiles: splitResult.slice((page - 1)*12, limit*page),
+      // resFiles: splitResult,
     });
   })();
 });
