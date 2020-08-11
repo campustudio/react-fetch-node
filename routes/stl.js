@@ -8,6 +8,7 @@ const testFolder = path.join(__dirname, '../public/stls');
 let bodyParser = require('body-parser');
 let parser = bodyParser.json({extended: false});
 const globby = require('globby');
+let splitResult = [];
 
 router.post('/todo', function(req, res, next) {
   console.log('into stl todo');
@@ -36,23 +37,43 @@ router.post('/stls', function(req, res, next) {
   //     resFiles,
   //   });
   // })
-
-  const listAllFilesAndDirs = dir => globby(`${dir}/**/*`);
-  (async () => {
-    const result = await listAllFilesAndDirs(process.cwd() + '/public/GLC');
-    const splitResult = [];
-    // console.log('result ', result);
-    result.forEach((e) => {
-      splitResult.push('./' + e.split('public/')[1])
-    })
-    console.log('splitResult ', splitResult);// 1 0 2 10 3 20
+  
+  const listAllFilesAndDirs = dir => globby.sync(`${dir}/**/*`);
+  const sendResult = (splitResult, page, limit) => {
+    console.log('splitResult.length: ', splitResult.length);
+    let finalResult = splitResult.slice((page - 1)*limit, limit*page);
+    let total = splitResult.length;
+    console.log('total: ', total);
+    let pageCount = (total % limit === 0) ? parseInt(total / limit) : parseInt(total / limit) + 1;
+    console.log('pageCount: ', pageCount);
+    if (page > pageCount) {
+      finalResult = [];
+    }
     res.send({
       code: 0,
       title: 'Get Stls',
-      resFiles: splitResult.slice((page - 1)*12, limit*page),
+      resFiles: finalResult,
+      pageCount,
       // resFiles: splitResult,
     });
-  })();
+  }
+
+  if (page === 1) {
+    (async () => {
+      const result = await listAllFilesAndDirs(process.cwd() + '/public/GLC');
+      // console.log('result ', result);
+      result.forEach((e) => {
+        if (e.slice(-3) === 'stl') {
+          splitResult.push('./' + e.split('public/')[1])
+        }
+      })
+      console.log('splitResult ', splitResult);// 1 0 2 10 3 20
+      console.log('splitResult.length ', splitResult.length);
+      sendResult(splitResult, page, limit);
+    })();
+  } else {
+    sendResult(splitResult, page, limit);
+  }
 });
 
 router.get('/', function(req, res, next) {

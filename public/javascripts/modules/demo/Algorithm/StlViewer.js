@@ -17,26 +17,41 @@ export default class StlViewer extends React.Component {
     this.state = {
       loading: true,
     }
-    this.mesh = {
+    // this.mesh = {
+    //   rotation: {
+    //     x: 0,
+    //     y: 0,
+    //     z: 0,
+    //   },
+    // }
+  }
+
+  componentDidMount() {
+    const { filePath } = this.props;
+    this.drawStl(filePath);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.filePath !== this.props.filePath) {
+      this.setState({ loading: true })
+      this.drawStl(nextProps.filePath);
+    }
+  }
+
+  drawStl = (filePath) => {
+    const self = this;
+    const { selfDomId, renderSize = 0 } = this.props;
+    const container = document.getElementById(selfDomId);
+    const scene = new THREE.Scene();
+    const renderer = new THREE.WebGLRenderer({ antialias:true });
+    const camera = new THREE.PerspectiveCamera(35, renderSize / renderSize, 0.1, 1000);
+    let mesh = {
       rotation: {
         x: 0,
         y: 0,
         z: 0,
       },
     }
-  }
-
-  componentDidMount() {
-    this.drawStl();
-  }
-
-  drawStl = () => {
-    const self = this;
-    const { filePath, selfDomId, renderSize = 0 } = this.props;
-    const container = document.getElementById(selfDomId);
-    const scene = new THREE.Scene();
-    const renderer = new THREE.WebGLRenderer({ antialias:true });
-    const camera = new THREE.PerspectiveCamera(35, renderSize / renderSize, 0.1, 1000);
 
     camera.position.set(3, 0.15, 3);
     scene.background = new THREE.Color(0xffffff);
@@ -51,7 +66,29 @@ export default class StlViewer extends React.Component {
 
     // // a common scale needed for thousands of files with diff sizes???
     // // or calculate scale based on each file size???
-    this.loadStl(scene, filePath, 0.005, 0.005, 0.005, 0);
+    // this.loadStl(scene, filePath, 0.005, 0.005, 0.005, 0);
+    // binary file
+    const loader = new THREE.STLLoader();
+    loader.load(filePath, (geometry) => {
+      const material = new THREE.MeshPhongMaterial({
+        // color: '#ff7c40', // prop?
+        // specular: '#bdbdbd',
+        // shininess: 200,
+        // flatShading: true,
+      });
+      geometry.center();
+      mesh = new THREE.Mesh(geometry, material);
+      // mesh.position.set(positionX, 0, 0);
+      // mesh.scale.set(scaleX, scaleY, scaleZ);
+      mesh.scale.set(0.005, 0.005, 0.005);
+      const axes = new THREE.AxesHelper(2000);
+      axes.material.depthTest = false;
+      axes.renderOrder = 1;
+      mesh.add(axes);
+      scene.add(mesh);
+      this.setState({ loading: false })
+    })
+
     const controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.minDistance = 1;
     controls.maxDistance = 1000;
@@ -59,9 +96,9 @@ export default class StlViewer extends React.Component {
     function animate(){
       requestAnimationFrame(animate);
       controls.update();
-      // self.mesh.rotation.x += 0.01;
-      self.mesh.rotation.y += 0.01;
-      // self.mesh.rotation.z += 0.01;
+      // mesh.rotation.x += 0.01;
+      mesh.rotation.y += 0.01;
+      // mesh.rotation.z += 0.01;
       renderer.render(scene, camera);
     }
     animate();

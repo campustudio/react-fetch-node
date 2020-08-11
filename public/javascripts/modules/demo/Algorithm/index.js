@@ -23,10 +23,12 @@ class Algorithm extends Component {
     this.bsF = this.bsF.bind(this)
     this.qsF = this.qsF.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
+    this.page = 1
+    this.pageCount = 0
   }
 
   componentDidMount() {
-    this.getStls(1);
+    this.getStls(this.page);
 
     window.addEventListener('scroll', (e) => {
       let st = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
@@ -48,7 +50,7 @@ class Algorithm extends Component {
       },
       body: JSON.stringify({
         page,
-        limit: 12,
+        limit: 8,
       }),
     }).then(
       (res) => res.json()
@@ -56,10 +58,19 @@ class Algorithm extends Component {
       console.log(data)
       if (data && data.code === 0) {
         let resStls = data.resFiles;
+        this.pageCount = data.pageCount;
         console.log('resStls: ', resStls);
         if (resStls && Array.isArray(resStls) && resStls.length > 0) {
+          if (page > 1) {
+            for (let i=0; i<8; i++) {
+              document.getElementById(`part${i}`).removeChild(
+                document.getElementById(`part${i}`).childNodes[0]
+              );
+            }
+          }
           this.setState({
-            stls: stls.concat(resStls),
+            // stls: stls.concat(resStls),
+            stls: resStls,
           })
         }
       }
@@ -130,11 +141,21 @@ class Algorithm extends Component {
           
         </Fragment> */}
         <header style={{width: 1280, height: 30, margin: '0 auto', textAlign: 'center'}}>
-          <span style={{lineHeight: '30px'}}>3D PARTS DEMO</span>
+          <button
+            onClick={() => this.getStls(--(this.page))}
+            disabled={this.page === 1}
+            style={{ borderRadius: 5, cursor: this.page === 1 ? 'not-allowed' : 'pointer' }}
+          >last group</button>
+          <span style={{lineHeight: '30px',padding: '0 30px'}}>3D PARTS DEMO</span>
+          <button
+            onClick={() => this.getStls(++(this.page))}
+            disabled={this.page >= this.pageCount}
+            style={{borderRadius: 5, cursor: this.page >= this.pageCount ? 'not-allowed' : 'pointer'}}
+          >next group</button>
         </header>
         <hr/>
         <div style={{width: 1280, margin: '0 auto'}}>
-          {/* {
+          {
             stls.map((s, i) => {
               return (
                 <StlViewer
@@ -144,8 +165,8 @@ class Algorithm extends Component {
                 />
               )
             })
-          } */}
-          {
+          }
+          {/* {
             stls.length > 0
               && (
                 <StlGroupViewer
@@ -154,7 +175,7 @@ class Algorithm extends Component {
                   renderSize={1000}
                 />
               )
-          }
+          } */}
         </div>
       </div>
     )
