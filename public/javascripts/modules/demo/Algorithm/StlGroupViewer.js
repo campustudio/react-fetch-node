@@ -57,7 +57,7 @@ export default class StlGroupViewer extends React.Component {
 
     console.log('files: ', files);
     files.forEach((f) => {
-      this.loadStl(scene, f, 0.005, 0.005, 0.005, 0);
+      this.loadStl(scene, f, 0.0002, 0.0002, 0.0002, 0);
     })
 
     const controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -69,8 +69,11 @@ export default class StlGroupViewer extends React.Component {
     axes.renderOrder = 1;
     this.group.add(axes);
 
+    this.group.rotation.set( -1.6, 0.005, 0.68 );
+    // this.group.position.set( -2, 0, 0 );
 
     scene.add(this.group);
+    // new THREE.Box3().setFromObject( this.group ).getCenter( this.group.position ).multiplyScalar( - 1 );
     
     window.addEventListener('resize', this.onWindowResize(camera, renderer), false);
     function animate(){
@@ -78,7 +81,7 @@ export default class StlGroupViewer extends React.Component {
       controls.update();
       // self.mesh.rotation.x += 0.01;
       // self.mesh.rotation.y += 0.01;
-      self.group.rotation.y += 0.01;
+      // self.group.rotation.z += 0.01;
       // self.mesh.rotation.z += 0.01;
       renderer.render(scene, camera);
     }
@@ -95,7 +98,7 @@ export default class StlGroupViewer extends React.Component {
         // shininess: 200,
         // flatShading: true,
       });
-      geometry.center();
+      // geometry.center();
       this.mesh = new THREE.Mesh(geometry, material);
       // this.mesh.position.set(positionX, 0, 0);
       this.mesh.scale.set(scaleX, scaleY, scaleZ);
@@ -104,6 +107,14 @@ export default class StlGroupViewer extends React.Component {
       // axes.renderOrder = 1;
       // this.mesh.add(axes);
       // scene.add(this.mesh);
+
+      // var box = new THREE.Box3().setFromObject( this.mesh );
+      // box.center( this.mesh.position ); // this re-sets the this.mesh position
+      // this.mesh.position.multiplyScalar( - 1 );
+      // var pivot = new THREE.Group();
+      // pivot.add( this.mesh );
+      // this.group.add( pivot );
+
       this.group.add(this.mesh);
       console.log('this.group ', this.group);
       this.setState({ loading: false })

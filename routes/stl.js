@@ -52,9 +52,9 @@ router.post('/stls', function(req, res, next) {
     res.send({
       code: 0,
       title: 'Get Stls',
-      resFiles: finalResult,
+      // resFiles: finalResult,
+      resFiles: splitResult,
       pageCount,
-      // resFiles: splitResult,
     });
   }
 
