@@ -4,6 +4,5 @@ public/javascripts/build
 public/main.bundle.js
 public/main.bundle.js.*
 public/main.html
-package-lock.json
 .vscode/
 .DS_Store
