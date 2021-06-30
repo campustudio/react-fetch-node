@@ -52,22 +52,23 @@ router.post('/stls', function(req, res, next) {
     res.send({
       code: 0,
       title: 'Get Stls',
-      // resFiles: finalResult,
-      resFiles: splitResult,
+      resFiles: finalResult,
+      // resFiles: splitResult,
       pageCount,
     });
   }
 
   if (page === 1) {
     (async () => {
-      const result = await listAllFilesAndDirs(process.cwd() + '/public/GLC');
+      let result = await listAllFilesAndDirs(process.cwd() + '/public/GLC');
       // console.log('result ', result);
+      // result = result.slice(0, 16);
       result.forEach((e) => {
         if (e.slice(-3) === 'stl') {
           splitResult.push('./' + e.split('public/')[1])
         }
       })
-      console.log('splitResult ', splitResult);// 1 0 2 10 3 20
+      // console.log('splitResult ', splitResult);// 1 0 2 10 3 20
       console.log('splitResult.length ', splitResult.length);
       sendResult(splitResult, page, limit);
     })();

@@ -60,6 +60,7 @@ export default class StlViewer extends React.Component {
     this.addShadowedLight(scene, 0, 0, -5, '#616161', 1); // prop?
     // // scene.add(new THREE.AmbientLight(0xeeeeee, 1));
     renderer.setSize(renderSize, renderSize);
+
     const cCanvas = renderer.getContext().canvas;
     cCanvas.setAttribute("style", cCanvas.getAttribute("style") + 'border-radius: 25px;cursor: pointer;');
     container.appendChild(renderer.domElement);

@@ -32,7 +32,7 @@ export default class StlGroupViewer extends React.Component {
   }
 
   drawStl = () => {
-    console.log('drawStl: ');
+    // console.log('drawStl: ');
     const self = this;
     const { filePath, selfDomId, renderSize = 0, files = [] } = this.props;
     const container = document.getElementById(selfDomId);
@@ -55,7 +55,7 @@ export default class StlGroupViewer extends React.Component {
     // // or calculate scale based on each file size???
     // this.loadStl(scene, filePath, 0.005, 0.005, 0.005, 0);
 
-    console.log('files: ', files);
+    // console.log('files: ', files);
     files.forEach((f) => {
       this.loadStl(scene, f, 0.0002, 0.0002, 0.0002, 0);
     })
@@ -116,7 +116,7 @@ export default class StlGroupViewer extends React.Component {
       // this.group.add( pivot );
 
       this.group.add(this.mesh);
-      console.log('this.group ', this.group);
+      // console.log('this.group ', this.group);
       this.setState({ loading: false })
     })
   }

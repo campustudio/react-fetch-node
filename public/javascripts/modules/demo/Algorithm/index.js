@@ -28,6 +28,7 @@ class Algorithm extends Component {
   }
 
   componentDidMount() {
+    console.log('componentDidMount: ');
     this.getStls(this.page);
 
     window.addEventListener('scroll', (e) => {
@@ -55,11 +56,11 @@ class Algorithm extends Component {
     }).then(
       (res) => res.json()
     ).then((data) => {
-      console.log(data)
+      // console.log(data)
       if (data && data.code === 0) {
         let resStls = data.resFiles;
         this.pageCount = data.pageCount;
-        console.log('resStls: ', resStls);
+        // console.log('resStls: ', resStls);
         if (resStls && Array.isArray(resStls) && resStls.length > 0) {
           if (page >= 1) {
             for (let i=0; i<8; i++) {
@@ -157,7 +158,7 @@ class Algorithm extends Component {
         </header>
         <hr/>
         <div style={{width: 1280, margin: '0 auto'}}>
-          {/* {
+          {
             stls.map((s, i) => {
               return (
                 <StlViewer
@@ -167,17 +168,17 @@ class Algorithm extends Component {
                 />
               )
             })
-          } */}
-          {
+          }
+          {/* {
             stls.length > 0
               && (
                 <StlGroupViewer
                   selfDomId="part1"
                   files={stls}
-                  renderSize={800}
+                  renderSize={1250}
                 />
               )
-          }
+          } */}
         </div>
       </div>
     )
