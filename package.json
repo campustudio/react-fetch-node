@@ -42,7 +42,7 @@
     "redux-thunk": "^2.3.0",
     "request": "^2.88.0",
     "serve-favicon": "~2.4.5",
-    "three": "^0.119.1",
+    "three": "^0.137.0",
     "three-full": "^28.0.2"
   },
   "devDependencies": {
